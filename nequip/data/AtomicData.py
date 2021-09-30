@@ -96,7 +96,9 @@ class AtomicData(Data):
         assert self.pos.dim() == 2 and self.pos.shape[1] == 3
         assert self.edge_index.dim() == 2 and self.edge_index.shape[0] == 2
         if "edge_cell_shift" in self and self.edge_cell_shift is not None:
-            assert self.edge_cell_shift.shape == (self.num_edges, 3)
+
+
+            # assert self.edge_cell_shift.shape == (self.num_edges, 3)
             assert self.edge_cell_shift.dtype == self.pos.dtype
         if "cell" in self and self.cell is not None:
             assert (self.cell.shape == (3, 3)) or (
@@ -192,7 +194,6 @@ class AtomicData(Data):
             kwargs[AtomicDataDict.PBC_KEY] = torch.as_tensor(
                 pbc, dtype=torch.bool
             ).view(3)
-
         return cls(edge_index=edge_index, pos=torch.as_tensor(pos), **kwargs)
 
     @classmethod
@@ -359,7 +360,7 @@ class AtomicData(Data):
     def irreps(self):
         return self.__irreps__
 
-    def __cat_dim__(self, key, value):
+    def __cat_dim__(self, key, value, *args, **kwargs):
         if key in (
             AtomicDataDict.CELL_KEY,
             AtomicDataDict.PBC_KEY,
@@ -527,3 +528,4 @@ def neighbor_list_and_relative_vec(
         device=out_device,
     )
     return edge_index, shifts, cell_tensor
+
