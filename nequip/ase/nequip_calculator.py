@@ -95,7 +95,7 @@ class NequIPCalculator(Calculator):
         """
         # call to base-class to set atoms attribute
         Calculator.calculate(self, atoms)
-
+        atoms.wrap()
         # prepare data
         data = AtomicData.from_ase(atoms=atoms, r_max=self.r_max)
         data = self.transform(data)
