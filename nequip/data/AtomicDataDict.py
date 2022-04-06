@@ -78,7 +78,7 @@ def with_edge_vectors(data: Type, with_lengths: bool = True) -> Type:
                 # Cell has a batch dimension
                 # note the ASE cell vectors as rows convention
                 edge_vec = edge_vec + torch.einsum(
-                    "ni,nij->nj", edge_cell_shift, cell[batch[edge_index[0]]]
+                    "ni,nij->nj", edge_cell_shift, cell[batch[edge_index[0]]].squeeze()
                 )
                 # TODO: is there a more efficient way to do the above without
                 # creating an [n_edge] and [n_edge, 3, 3] tensor?
