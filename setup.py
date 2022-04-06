@@ -12,6 +12,7 @@ setup(
     name="nequip",
     version=version,
     description="NequIP is an open-source code for building E(3)-equivariant interatomic potentials.",
+    download_url="https://github.com/mir-group/nequip",
     author="Simon Batzner, Albert Musealian, Lixin Sun, Mario Geiger, Anders Johansson, Tess Smidt",
     python_requires=">=3.6",
     packages=find_packages(include=["nequip", "nequip.*"]),
@@ -28,7 +29,7 @@ setup(
         "numpy",
         "ase",
         "tqdm",
-        "torch>=1.8,<1.12",  # torch.fx added in 1.8
+        "torch>=1.8,<1.11",  # torch.fx added in 1.8
         "e3nn>=0.3.5,<0.5.0",
         "pyyaml",
         "contextlib2;python_version<'3.7'",  # backport of nullcontext
